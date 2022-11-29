@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/custom.css">
+    <title>Document</title>
+</head>
+<body id="html">
+    <section>
+        <h1>Todo List</h1>
+        <hr>
+        <p>Nueva Tarea:</p>
+        <div class="d-flex">
+            <div class="row">
+                <div class="col-8"><input id="inptTask" type="text" placeholder="Ingrese una nueva tarea"></div>
+                <div class="col-4"><button id="btnTask" class="btn btn-success">Agregar</button></div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-around">
+        <div class="d-flex flex-column">
+                <p>Total Tareas: <strong><span id="spanTotal">0</span></strong></p>
+                <p>Tareas Realizadas: <strong><span id="spanFinished">0</span></strong></p>
+            </div>
+        <table class="text-center table table-striped table-hover table-responsive w-50">
+            <tr><th>ID</th><th>Tarea</th><th>Status</th></tr>
+            <tbody id="tbodyRender">
+            </tbody>
+        </table>
+        </div>
+    </section>
+    
+<script src="./assets/js/todoList.js"></script>
+</body>
+</html>
