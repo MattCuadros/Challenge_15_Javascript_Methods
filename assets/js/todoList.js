@@ -37,31 +37,32 @@ function render() {
   } else {
     arrayTareas.forEach((task) => {
       if (task.statusTarea === false) {
-        tbodyTareas.innerHTML += `<tr><td>${task.id}</td><td>${task.nombreTarea} </td><td> <input type="date"> </td><td><input type="checkbox" name="" onclick="tareaRealizar(${task.id})" id="${task.id}" ><span class="m-3" onclick="borrarTarea(${task.id})" id="${task.id}"><i class="fa-regular fa-trash-can"></i></span></td></tr>`;
+        tbodyTareas.innerHTML += `<tr><td>${task.id}</td><td>${task.nombreTarea} </td><td><input type="checkbox" name="" onclick="tareaRealizar(${task.id})" id="${task.id}" ><span class="m-3" onclick="borrarTarea(${task.id})" id="${task.id}"><i class="fa-regular fa-trash-can"></i></span></td></tr>`;
       } else {
-        tbodyTareas.innerHTML += `<tr><td>${task.id}</td><td><del>${task.nombreTarea} </del></td><td> <input type="date"> </td><td> <input type="checkbox" checked name="" onclick="tareaRealizar(${task.id})" id="${task.id}" ><span class="m-3" onclick="borrarTarea(${task.id})" id="${task.id}"><i class="fa-regular fa-trash-can"></i></span></td></tr>`;
+        tbodyTareas.innerHTML += `<tr><td>${task.id}</td><td><del>${task.nombreTarea} </del></td><td> <input type="checkbox" checked name="" onclick="tareaRealizar(${task.id})" id="${task.id}" ><span class="m-3" onclick="borrarTarea(${task.id})" id="${task.id}"><i class="fa-regular fa-trash-can"></i></span></td></tr>`;
       }
     });
   }
 }
 render();
-const arrayTareasNombre = arrayTareas.map((objeto) => {
-  return objeto.nombreTarea;
-});
+ 
+
+
 btnTarea.addEventListener("click", () => {
-  let nuevaTarea = inptTarea.value;
-  if (nuevaTarea === "") {
-    alert("Debe escribir una tarea");
-  } else if (arrayTareasNombre.includes(nuevaTarea) === true) {
-    alert("La tarea que quieres ingresar, ya existe, prueba con otra.");
-    return;
+  const arrayTareasNombre = arrayTareas.map((objeto) => {
+  return objeto.nombreTarea;
+}); 
+  if (inptTarea.value === "") {
+    return alert("Debe escribir una tarea");
+  } else if (arrayTareasNombre.includes(inptTarea.value) === true) {
+    return alert("La tarea que quieres ingresar, ya existe, prueba con otra.");
   } else {
     arrayTareas.push({
       id: Date.now(),
-      nombreTarea: `${nuevaTarea}`,
+      nombreTarea: `${inptTarea.value}`,
       statusTarea: false,
     });
-    nuevaTarea = "";
+    inptTarea.value = "";
     return render();
   }
 });

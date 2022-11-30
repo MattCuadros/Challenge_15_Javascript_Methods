@@ -5,7 +5,7 @@
 In this Challenge, i used Vanilla Javascript, Sass and Bootstrap, to make a Tasks List than the user can add new Task, mark done existing tasks and delete existing tasks using CRUD mechanism.
 
 >>The  installation method for Sass and Bootstrap was mediantly NPM.
-You can view the Deployed Page on GitHub-Pages in this <a href="" target="_blank">Link</a>
+You can view the Deployed Page on GitHub-Pages in this <a href="https://mattcuadros.github.io/Challenge_15_Javascript_Methods/" target="_blank">Link</a>
 
 ---
 
