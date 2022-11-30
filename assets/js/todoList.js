@@ -1,74 +1,89 @@
-let arrayTasks = [
-  { id: Date.now() + 1, nameTask: "Lavar mi ropa", statusTask: false },
-  { id: Date.now() + 2, nameTask: "Pasear a Terry", statusTask: false },
+let arrayTareas = [
+  { id: Date.now() + 1, nombreTarea: "Estudiar Métodos", statusTarea: false },
+  { id: Date.now() + 2, nombreTarea: "Estudiar para el Desafío", statusTarea: false },
   {
     id: Date.now() + 3,
-    nameTask: "Estudiar para el Desafío",
-    statusTask: false,
+    nombreTarea: "Subir el Desafío a la Plataforma",
+    statusTarea: false,
   },
 ];
-const tbodyRender = document.querySelector("#tbodyRender");
-const inptTask = document.querySelector("#inptTask");
-const btnTask = document.querySelector("#btnTask");
+const tbodyTareas = document.querySelector("#tbodyTareas");
+const inptTarea = document.querySelector("#inptTarea");
+const btnTarea = document.querySelector("#btnTarea");
 const html = document.querySelector("#html");
 const spanTotal=document.querySelector("#spanTotal");
-const spanFinished=document.querySelector("#spanFinished");
+const spanFinalizadas=document.querySelector("#spanFinalizadas");
 
 const taskFinished = ()=>{
-    arrayFinished=arrayTasks.filter((task)=>task.statusTask!==false);
-    return arrayFinished.length};
-    
-function render() {
-  tbodyRender.innerHTML = "";
-  spanTotal.innerHTML=`${arrayTasks.length}`;
-  spanFinished.innerHTML=taskFinished();
+    arrayFinalizadas=arrayTareas.filter((task)=>task.statusTarea!==false);
+    return arrayFinalizadas.length};
+   
 
-  if (arrayTasks.length === 0) {
-    tbodyRender.innerHTML = `<tr><td></td><td>No hay tareas</td><td></td></tr>`;
+function render() {
+  tbodyTareas.innerHTML = "";
+  spanTotal.innerHTML=`${arrayTareas.length}`;
+  spanFinalizadas.innerHTML=taskFinished();
+
+  if (arrayTareas.length === 0) {
+    tbodyTareas.innerHTML = `<tr><td></td><td>No hay tareas</td><td></td><td></td></tr>`;
   } else {
-    arrayTasks.forEach((task) => {
-      if (task.statusTask === false) {
-        tbodyRender.innerHTML += `<tr><td>${task.id}</td><td>${task.nameTask} </td><td> <input type="checkbox" name="" onclick="doneTask(${task.id})" id="${task.id}" ><span onclick="deleteTask(${task.id})" id="${task.id}">❌</span></td></tr>`;
+    arrayTareas.forEach((task) => {
+      if (task.statusTarea === false) {
+        tbodyTareas.innerHTML += `<tr><td>${task.id}</td><td>${task.nombreTarea} </td><td> <input type="date"> </td><td><input type="checkbox" name="" onclick="tareaRealizar(${task.id})" id="${task.id}" ><span onclick="borrarTarea(${task.id})" id="${task.id}">❌</span></td></tr>`;
       } else {
-        tbodyRender.innerHTML += `<tr><td>${task.id}</td><td><del>${task.nameTask} </del></td><td> <input type="checkbox" checked name="" onclick="doneTask(${task.id})" id="${task.id}" ><span onclick="deleteTask(${task.id})" id="${task.id}">❌</span></td></tr>`;
+        tbodyTareas.innerHTML += `<tr><td>${task.id}</td><td><del>${task.nombreTarea} </del></td><td> <input type="date"> </td><td> <input type="checkbox" checked name="" onclick="tareaRealizar(${task.id})" id="${task.id}" ><span onclick="borrarTarea(${task.id})" id="${task.id}">❌</span></td></tr>`;
       }
     });
   }
 }
 render();
-
-btnTask.addEventListener("click", () => {
-  if (inptTask.value === "") {
+const arrayTareasNombre=arrayTareas.map((objeto)=>{return objeto.nombreTarea});
+btnTarea.addEventListener("click", () => {
+  let nuevaTarea=inptTarea.value;
+  if (nuevaTarea === "") {
     alert("Debe escribir una tarea");
+  } else if (
+    arrayTareasNombre.includes(nuevaTarea)===true
+  ) {
+    alert("La tarea que quieres ingresar, ya existe, prueba con otra.");
+    return;
   } else {
-    arrayTasks.push({
+    arrayTareas.push({
       id: Date.now(),
-      nameTask: `${inptTask.value}`,
-      statusTask: false,
+      nombreTarea: `${nuevaTarea}`,
+      statusTarea: false,
     });
-    inptTask.value = "";
+    nuevaTarea = "";
     return render();
   }
 });
 
-const deleteTask = (identificador) => {
-  arrayTasks = arrayTasks.filter((task) => task.id !== identificador);
+const borrarTarea = (identificador) => {
+  let respuestaPrompt=prompt(`¿Está seguro de Borrar la Tarea? 
+  Escribe "S" para Borrar la tarea.  
+ `);
+  if(respuestaPrompt.toUpperCase()==="S"){
+  arrayTareas = arrayTareas.filter((task) => task.id !== identificador);
   render();
-  console.log(arrayTasks);
+  } else {
+    return;
+  }
+
 };
 
-const doneTask = (identificador) => {
-  arrayTasks.forEach((task) => {
+const tareaRealizar = (identificador) => {
+  arrayTareas.forEach((task) => {
     if (task.id === identificador) {
-      if (task.statusTask === false) {
-        task.statusTask = true;
+      if (task.statusTarea === false) {
+        task.statusTarea = true;
         render();
       } else {
-        task.statusTask = false;
+        task.statusTarea = false;
         render();
       }
     }
   });
 };
+
 
 

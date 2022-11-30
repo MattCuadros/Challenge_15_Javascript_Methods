@@ -5,27 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/custom.css">
-    <title>Document</title>
+    <title>Challenge #15-Methods JS</title>
 </head>
 <body id="html">
-    <section>
+    <section class="container-fluid">
         <h1>Todo List</h1>
         <hr>
         <p>Nueva Tarea:</p>
-        <div class="d-flex">
+        <div>
             <div class="row">
-                <div class="col-8"><input id="inptTask" type="text" placeholder="Ingrese una nueva tarea"></div>
-                <div class="col-4"><button id="btnTask" class="btn btn-success">Agregar</button></div>
+                <div class="col"><input class="w-100"id="inptTarea" type="text" placeholder="Ingrese una nueva tarea"></div>
+                <div class="col"><button id="btnTarea" class="btn btn-success">Agregar</button></div>
             </div>
         </div>
-        <div class="d-flex justify-content-around">
-        <div class="d-flex flex-column">
+        <div class="d-flex justify-content-between">
+        <div class="d-flex flex-column m-4">
                 <p>Total Tareas: <strong><span id="spanTotal">0</span></strong></p>
-                <p>Tareas Realizadas: <strong><span id="spanFinished">0</span></strong></p>
+                <p>Tareas Realizadas: <strong><span id="spanFinalizadas">0</span></strong></p>
             </div>
-        <table class="text-center table table-striped table-hover table-responsive w-50">
-            <tr><th>ID</th><th>Tarea</th><th>Status</th></tr>
-            <tbody id="tbodyRender">
+        <table class="text-center table table-striped table-hover table-responsive w-50 m-4">
+            <tr><th class="table-info">ID</th><th class="table-info">Tarea</th><th class="table-info">Fecha</th><th class="table-info">Status</th></tr>
+            <tbody id="tbodyTareas">
             </tbody>
         </table>
         </div>
